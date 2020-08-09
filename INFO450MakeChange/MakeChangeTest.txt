@@ -1,0 +1,116 @@
+/*
+This is a somewhat working version of the program. 
+The change calculation works but...
+
+For the specific amount of
+itemCost = 5.00
+amountPaid = 6.60
+
+1 Dollar
+2 Quarters
+1 Nickel		//Why is it 1 Nickel and not one quarter?
+
+*/
+
+// INFO450-MakeChange-GoreCameron
+//This program acts like a vending machine would.
+//It takes an input ($) and despences change based on the cost of purchased item.
+
+#include "stdafx.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	float itemCost;
+	float amountPaid;
+	float moreMoney;
+	int dollars;
+	int quarters;
+	int dimes;
+	int nickels;
+	int changeDue;		//not sure if float or int
+	int rDollars;		//These are for the remainders
+	int rQuarters;
+	int rDimes;
+	int rNickels;
+	
+	do
+	{
+		cout << "Please enter the cost of the item: ";										//Begining of code
+		cin >> itemCost;																	//User input
+
+		if (itemCost != 0)																	//First loop. Checks to see if user wants to continue
+		{
+			cout << "Please insert your money now: ";										//User enters "their money"
+			cin >> amountPaid;
+
+			while (amountPaid < itemCost)													//Checks for sufficient funds.
+			{
+				cout << amountPaid << " is not enough, please insert more money: ";
+				cin >> moreMoney;
+				amountPaid += moreMoney;													//adds money to total until satisfactory
+			}
+			
+
+			cout << "You have entered " << amountPaid << endl;								//There is enough money, continues...
+			cout << "This is plenty..." << endl;
+			
+			amountPaid = amountPaid - itemCost;												//ChangeDue is the difference between 
+			changeDue = amountPaid * 100;
+			cout << "Your change is:" << endl;												//Begins the change return process
+			
+			dollars = changeDue / 100 ;
+			rDollars = changeDue % 100;
+			if ((dollars == 0) || (dollars < 0))
+			{
+				
+			}
+			else
+			{
+				cout << dollars << " Dollar(s) " << endl;
+			}
+
+			quarters = rDollars / 25;
+			rQuarters = rDollars % 25;
+			if ((quarters == 0) || (quarters < 0))
+			{
+
+			}
+			else
+			{
+				cout << quarters << " Quarter(s)" << endl;
+			}
+			
+			dimes = rQuarters / 10;
+			rDimes = rQuarters % 10;
+			if ((dimes == 0) || (dimes < 0))
+			{
+
+			}
+			else
+			{
+				cout << dimes << " Dime(s)" << endl;
+			}
+			
+			nickels = rDimes / 5;
+			rNickels = rDimes % 5;
+			if ((nickels == 0) || (nickels < 0))
+			{
+
+			}
+			else
+			{
+				cout << nickels << " Nickel(s)" << endl;
+			}
+			
+		}
+	} 
+	while (itemCost != 0);
+	{
+		cout << "Thank you for using this program." << endl;
+	}
+	
+	return 0;
+}
+
